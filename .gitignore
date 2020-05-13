@@ -3,3 +3,6 @@ node_modules/
 agent/target
 *.jar
 *.class
+.env.staging
+.env
+.env.local
