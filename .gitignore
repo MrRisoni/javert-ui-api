@@ -6,3 +6,6 @@ agent/target
 .env.staging
 .env
 .env.local
+.idea/workspace.xml
+.idea/
+.idea
