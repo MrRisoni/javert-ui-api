@@ -1,0 +1,16 @@
+{
+  "name": "agent",
+  "version": "1.0.0",
+  "main": "agent_main.js",
+  "author": "Vaggelis",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^3.2.0",
+    "body-parser": "^1.19.0",
+    "custom-env": "^2.0.1",
+    "express": "^4.17.1",
+    "moment": "^2.25.3",
+    "mongoose": "^5.9.13",
+    "require-env": "^0.2.1"
+  }
+}

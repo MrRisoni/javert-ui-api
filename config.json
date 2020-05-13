@@ -1,0 +1,5 @@
+[
+  {
+    "host1": { "url": "fooo", "intervals": { "load": 5000, "memory": 15000 } }
+  }
+]
