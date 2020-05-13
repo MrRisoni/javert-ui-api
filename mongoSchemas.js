@@ -26,12 +26,14 @@ var zfsListSchema = new mongoose.Schema({
 
 
 var zfsMdl = mongoose.model('ZFSList', zfsListSchema);
+var hostMdl = mongoose.model('Host', hostSchema);
 
 
 module.exports = {
     hostSchema,
     zfsListSchema,
     zfsListItemSchema,
-    zfsMdl
+    zfsMdl,
+    hostMdl
 }
 

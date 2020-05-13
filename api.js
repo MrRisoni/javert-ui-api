@@ -26,6 +26,16 @@ app.get('/api/zfslist', (req, res) => {
     });
 });
 
+app.get('/api/hosts', (req, res) => {
+    fetchCtrl.getHosts().then(data => {
+        res.send(data);
+    }).catch(err => {
+        console.log(err);
+        res.sendStatus(500);
+    });
+});
+
+
 http.listen(port, (req, res) => {
     console.log('Server listening on port number', port);
 });
