@@ -14,23 +14,18 @@ app.use(cors());
 const connStr = 'mongodb+srv://' + process.env.MONGO_USR + ':' + process.env.MONGO_PASSWD + '@' + process.env.MONGO_HOST + '/' + process.env.MONGO_DBNAME + '?retryWrites=true&w=majority';
 mongoose.connect(connStr, {useNewUrlParser: true, useUnifiedTopology: true});
 
-app.get('/api/zfslist', (req,res) => {
-    // get host name
-    var query  = schemas.zfsMdl.where({ hostId: '5ebc2a530d0ffd1c6e5e8a05' });
-    query.findOne(function (err, zfslistdata) {
-         if (err)  {
-             console.log(err);
+const FetchController = require('./FetchController');
+const fetchCtrl = new FetchController();
+
+app.get('/api/zfslist', (req, res) => {
+    fetchCtrl.getZFSList(req.params.hostId).then(data => {
+        res.send(data);
+    }).catch(err => {
+        console.log(err);
         res.sendStatus(500);
-         }
-        if (zfslistdata) {
-            // doc may be null if no document matched
-            res.send(zfslistdata);
-        }
-    })
-
-
-
+    });
 });
+
 http.listen(port, (req, res) => {
     console.log('Server listening on port number', port);
 });
