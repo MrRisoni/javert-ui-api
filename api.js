@@ -26,6 +26,15 @@ app.get('/api/zfslist', (req, res) => {
     });
 });
 
+app.get('/api/hostinfo', (req, res) => {
+    fetchCtrl.getHostData(req.params.hostId).then(data => {
+                res.send({zfslist:data[0]});
+   }).catch(err => {
+        console.log(err);
+        res.sendStatus(500);
+    });
+});
+
 app.get('/api/hosts', (req, res) => {
     fetchCtrl.getHosts().then(data => {
         res.send(data);

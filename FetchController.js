@@ -18,7 +18,13 @@ module.exports =
 
         }
 
+        getHostData(hostId = '5ebc2a530d0ffd1c6e5e8a05') {
+           return Promise.all([this.getZFSList()]);
+        }
+
+
         getZFSList(hostId = '5ebc2a530d0ffd1c6e5e8a05') {
+            console.log('Invoked')
             return new Promise((resolve, reject) => {
                 schemas.zfsMdl.where({hostId}).findOne((err, zfslistdata) => {
                     if (err) {
@@ -26,6 +32,7 @@ module.exports =
                         reject();
                     }
                     if (zfslistdata) {
+                        console.log('Resolved zfslist');
                         resolve(zfslistdata);
                     }
                 })
