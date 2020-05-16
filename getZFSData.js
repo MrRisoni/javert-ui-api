@@ -4,6 +4,7 @@ require("custom-env").env("staging");
 const mongoose = require("mongoose");
 const schemas = require("./mongoSchemas");
 
+
 const connStr =
     "mongodb+srv://" +
     process.env.MONGO_USR +
@@ -27,10 +28,27 @@ axios
         var hostname = response.data.hostName;
         var partitions = [];
         response.data.partitions.forEach(prt => {
+            var sizeMib = usedMib =availMib = used =0;
+
+            
+            let usedUnit = prt.used.replace(/[^a-zA-Z]+/g, '');
+            let sizeUnit = prt.size.replace(/[^a-zA-Z]+/g, '');
+            let availUnit = prt.avail.replace(/[^a-zA-Z]+/g, '');
+
+            let usedRaw = prt.used.replace(/\D+/g, '');
+
+
+            console.log(usedUnit + ' ' + sizeUnit + ' ' + availUnit);
+            console.log(usedRaw + ' ' + sizeUnit + ' ' + availUnit);
+
+            // convert to Mib
+
+
             partitions.push(
                 new zfsMdlItm({
                     name: prt.fileSystem,
                     usedRaw: prt.used,
+                    sizeRaw: prt.size,
                     availRaw: prt.avail,
                     mounted: prt.mounted
                 })

@@ -7,7 +7,20 @@ var hostSchema = new mongoose.Schema({
 });
 
 
+var zfsListStatusItemSchema = new mongoose.Schema({
+    name: String,
+    state:String,
+    read:Number,
+    write: Number,
+    cheksum: Number
+});
 
+
+var zfsStatusSchema = new mongoose.Schema({
+    hostId: {type: String, required: true},
+    stamp: {type: Date, default: Date.now},
+    items: [zfsListStatusItemSchema],
+});
 
 
 var zfsListItemSchema = new mongoose.Schema({
@@ -24,7 +37,7 @@ var zfsListItemSchema = new mongoose.Schema({
 
 
 var zfsListSchema = new mongoose.Schema({
-    hostId: {type: String, unique: true, required: true},
+    hostId: {type: String, required: true},
     stamp: {type: Date, default: Date.now},
     items: [zfsListItemSchema],
 });
@@ -42,5 +55,7 @@ module.exports = {
     zfsListSchema,
     zfsListItemSchema,
     zfsMdl,
-    hostMdl
+    hostMdl,
+    zfsStatusSchema,
+    zfsListItemSchema
 }
