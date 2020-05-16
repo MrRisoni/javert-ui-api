@@ -45,6 +45,14 @@ app.get('/api/hosts', (req, res) => {
 });
 
 
+app.post('/api/zfs/list', (req, res) => {
+    console.log(req.body)
+            res.sendStatus(200);
+
+});
+
+
+
 http.listen(port, (req, res) => {
     console.log('Server listening on port number', port);
 });

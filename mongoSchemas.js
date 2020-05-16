@@ -24,6 +24,9 @@ var zfsListSchema = new mongoose.Schema({
     items: [zfsListItemSchema],
 });
 
+// eg free memory below < 35%
+// eg zfsroot used above 50%
+
 
 var zfsMdl = mongoose.model('ZFSList', zfsListSchema);
 var hostMdl = mongoose.model('Host', hostSchema);
