@@ -7,8 +7,13 @@ var hostSchema = new mongoose.Schema({
 });
 
 
+
+
+
 var zfsListItemSchema = new mongoose.Schema({
     name: String,
+    sizeRaw:String,
+    sizeMib:Number,
     usedRaw: String,
     usedMib: Number,
     used:{type: Number, default: 0.000001},
@@ -39,4 +44,3 @@ module.exports = {
     zfsMdl,
     hostMdl
 }
-
