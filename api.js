@@ -1,4 +1,4 @@
-require('custom-env').env('staging')
+//require('custom-env').env('staging')
 const mongoose = require('mongoose');
 const schemas = require('./mongoSchemas');
 const port = process.env.PORT || 3500;
@@ -11,7 +11,13 @@ const cors = require('cors');
 app.use(bodyParser.json());
 app.use(cors());
 
-const connStr = 'mongodb+srv://' + process.env.MONGO_USR + ':' + process.env.MONGO_PASSWD + '@' + process.env.MONGO_HOST + '/' + process.env.MONGO_DBNAME + '?retryWrites=true&w=majority';
+const mon_usr = process.env.MONGO_USR || 'monusr';
+const mon_psw = process.env.MONGO_PASSWD || 'monusr';
+const mon_host = process.env.MONGO_HOST || 'monusr';
+const mon_db = process.env.MONGO_DBNAME || 'monusr';
+
+
+const connStr = 'mongodb+srv://' + mon_usr + ':' + mon_psw + '@' + mon_host + '/' + mon_db + '?retryWrites=true&w=majority';
 mongoose.connect(connStr, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const FetchController = require('./FetchController');
