@@ -46,8 +46,27 @@ var zfsListSchema = new mongoose.Schema({
 // eg zfsroot used above 50%
 
 
+var sysProcSchema = new mongoose.Schema({
+    pid: String,
+    user:  String,
+    cpu:  Number,
+    memory: Number,
+    command:  String,
+
+});
+
+
+var sysProcListSchema = new mongoose.Schema({
+    hostId: {type: String, required: true},
+    stamp: {type: Date, default: Date.now},
+    processes: [sysProcSchema],
+});
+
+
 var zfsMdl = mongoose.model('ZFSList', zfsListSchema);
 var hostMdl = mongoose.model('Host', hostSchema);
+var sysProcsMdl = mongoose.model('sysproc', sysProcListSchema);
+var sysProcItemMdl = mongoose.model('sysprocitm', sysProcSchema);
 
 
 module.exports = {
@@ -57,5 +76,8 @@ module.exports = {
     zfsMdl,
     hostMdl,
     zfsStatusSchema,
-    zfsListItemSchema
+    sysProcSchema,
+    sysProcListSchema,
+    sysProcsMdl,
+    sysProcItemMdl
 }
