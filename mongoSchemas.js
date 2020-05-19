@@ -7,8 +7,8 @@ var hostSchema = new mongoose.Schema({
 });
 
 
-var zfsListStatusItemSchema = new mongoose.Schema({
-    name: String,
+var zfsDiskSchema = new mongoose.Schema({
+    disk: String,
     state:String,
     read:Number,
     write: Number,
@@ -16,10 +16,10 @@ var zfsListStatusItemSchema = new mongoose.Schema({
 });
 
 
-var zfsStatusSchema = new mongoose.Schema({
+var zfsPoolSchema = new mongoose.Schema({
     hostId: {type: String, required: true},
     stamp: {type: Date, default: Date.now},
-    items: [zfsListStatusItemSchema],
+    disks: [zfsDiskSchema],
 });
 
 
@@ -68,7 +68,8 @@ var hostMdl = mongoose.model('Host', hostSchema);
 var sysProcsMdl = mongoose.model('sysproc', sysProcListSchema);
 var sysProcItemMdl = mongoose.model('sysprocitm', sysProcSchema);
 
-var zfspoolMdl = mongoose.model('zpool', zfsStatusSchema);
+var zfspoolMdl = mongoose.model('zpool', zfsPoolSchema);
+var zfspoolItmMdl = mongoose.model('zpoolItm', zfsDiskSchema);
 
 module.exports = {
     hostSchema,
@@ -76,10 +77,11 @@ module.exports = {
     zfsListItemSchema,
     zfsMdl,
     hostMdl,
-    zfsStatusSchema,
+    zfsPoolSchema,
     sysProcSchema,
     sysProcListSchema,
     sysProcsMdl,
     sysProcItemMdl,
-    zfspoolMdl
+    zfspoolMdl,
+    zfspoolItmMdl
 }

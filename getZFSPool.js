@@ -1,5 +1,5 @@
 const axios = require("axios");
-/*
+
 require("custom-env").env("staging");
 const mongoose = require("mongoose");
 const schemas = require("./mongoSchemas");
@@ -18,13 +18,29 @@ const connStr =
 
 mongoose.connect(connStr, {useNewUrlParser: true, useUnifiedTopology: true});
 
-var zfsMdlItm = mongoose.model("ZFSListItem", schemas.zfsListItemSchema);
-var zfsMdl = mongoose.model("ZFSList", schemas.zfsListSchema);
-*/
+
+
 axios
   .get("http://192.168.122.107:8080/zpool")
   .then(function(response) {
     console.log(response.data);
+      var hostname = response.data.hostName;
+      var pools = [];
+        response.data.pool.forEach(pl => {
+            pools.push(
+                new schemas.zfspoolItmMdl({
+                    disk: pl.disk,
+                    state: pl.state,
+
+                })
+            );
+        });
+
+      var pisina = new schemas.zfspoolMdl({
+          hostId: response.data.hostName,
+          disks: pools
+      });
+      pisina.save().then(() => console.log("meow"));
   })
   .catch(function(error) {
     // handle error

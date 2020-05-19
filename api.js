@@ -33,6 +33,7 @@ app.get('/api/zfslist', (req, res) => {
 
 app.get('/api/hostinfo', (req, res) => {
     fetchCtrl.getHostData(req.params.hostId).then(data => {
+        console.log('api.js send');
         res.send({zfslist: data[0], zpool: data[1], sysproc: data[2]});
     }).catch(err => {
         console.log(err);

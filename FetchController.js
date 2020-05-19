@@ -23,6 +23,8 @@ module.exports =
         }
 
         getSysProcs(hostId = '5ebfbfba062e17088cd76417') {
+            console.log('Invoked getSysProcs')
+
             return new Promise((resolve, reject) => {
                 schemas.sysProcsMdl.where({hostId}).findOne((err, sys_proc_list) => {
                     if (err) {
@@ -36,7 +38,9 @@ module.exports =
             });
         }
 
-        getZpool(hostId = '5ebc2a530d0ffd1c6e5e8a05') {
+        getZpool(hostId = '5ebfbfba062e17088cd76417') {
+            console.log('Invoked getZpool')
+
             return new Promise((resolve, reject) => {
                 schemas.zfspoolMdl.where({hostId}).findOne((err, zpool) => {
                     if (err) {
@@ -51,8 +55,8 @@ module.exports =
 
         }
 
-        getZFSList(hostId = '5ebc2a530d0ffd1c6e5e8a05') {
-            console.log('Invoked')
+        getZFSList(hostId = '5ebfbfba062e17088cd76417') {
+            console.log('Invoked getZFSList')
             return new Promise((resolve, reject) => {
                 schemas.zfsMdl.where({hostId}).findOne((err, zfslistdata) => {
                     if (err) {
