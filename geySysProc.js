@@ -29,6 +29,9 @@ axios
         var sysproclist = [];
         response.data.sysproclist.forEach(proc => {
 
+            if (proc.command.indexOf('java') > -1) {
+                console.log(proc);
+            }
             sysproclist.push(
                 new sysProcItemMdl({
                     pid: proc.pid,

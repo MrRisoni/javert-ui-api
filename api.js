@@ -1,6 +1,5 @@
-//require('custom-env').env('staging')
+require('custom-env').env('staging')
 const mongoose = require('mongoose');
-const schemas = require('./mongoSchemas');
 const port = process.env.PORT || 3500;
 const express = require('express');
 const app = express();
@@ -34,8 +33,8 @@ app.get('/api/zfslist', (req, res) => {
 
 app.get('/api/hostinfo', (req, res) => {
     fetchCtrl.getHostData(req.params.hostId).then(data => {
-                res.send({zfslist:data[0]});
-   }).catch(err => {
+        res.send({zfslist: data[0], zpool: data[1], sysproc: data[2]});
+    }).catch(err => {
         console.log(err);
         res.sendStatus(500);
     });

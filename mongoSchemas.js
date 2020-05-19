@@ -68,6 +68,7 @@ var hostMdl = mongoose.model('Host', hostSchema);
 var sysProcsMdl = mongoose.model('sysproc', sysProcListSchema);
 var sysProcItemMdl = mongoose.model('sysprocitm', sysProcSchema);
 
+var zfspoolMdl = mongoose.model('zpool', zfsStatusSchema);
 
 module.exports = {
     hostSchema,
@@ -79,5 +80,6 @@ module.exports = {
     sysProcSchema,
     sysProcListSchema,
     sysProcsMdl,
-    sysProcItemMdl
+    sysProcItemMdl,
+    zfspoolMdl
 }
