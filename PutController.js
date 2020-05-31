@@ -9,32 +9,32 @@ module.exports =
         zpool(url) {
 
             axios
-  .get("http://192.168.122.107:8080/zpool")
-  .then(function(response) {
-    console.log(response.data);
-      var hostname = response.data.hostName;
-      var pools = [];
-        response.data.pool.forEach(pl => {
-            pools.push(
-                new schemas.zfspoolItmMdl({
-                    disk: pl.disk,
-                    state: pl.state,
+                .get("http://192.168.122.107:8080/zpool")
+                .then(function (response) {
+                    console.log(response.data);
+                    var hostname = response.data.hostName;
+                    var pools = [];
+                    response.data.pool.forEach(pl => {
+                        pools.push(
+                            new schemas.zfspoolItmMdl({
+                                disk: pl.disk,
+                                state: pl.state,
 
+                            })
+                        );
+                    });
+
+                    var pisina = new schemas.zfspoolMdl({
+                        hostId: response.data.hostName,
+                        disks: pools
+                    });
+                    pisina.save().then(() => console.log("meow"));
                 })
-            );
-        });
-
-      var pisina = new schemas.zfspoolMdl({
-          hostId: response.data.hostName,
-          disks: pools
-      });
-      pisina.save().then(() => console.log("meow"));
-  })
-  .catch(function(error) {
-    // handle error
-    console.log("Axios Zpool error");
-    console.log(error);
-  });
+                .catch(function (error) {
+                    // handle error
+                    console.log("Axios Zpool error");
+                    console.log(error);
+                });
 
 
         }

@@ -9,7 +9,7 @@ mongoose.connect(connStr, {useNewUrlParser: true, useUnifiedTopology: true});
 
 
 var HostMdl = mongoose.model('Host', schemas.hostSchema);
-  var publicData = new HostMdl({ hostname: 'loadbalance_eu',hostUrl:'1121',fileSys:'zfs' });
+  var publicData = new HostMdl({ hostname: 'ubuntuzfs',hostUrl:'1121',fileSys:'zfs' });
 publicData.save().then(() => console.log('meow'));
 
 

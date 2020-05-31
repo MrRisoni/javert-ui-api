@@ -54,17 +54,17 @@ app.get('/api/hosts', (req, res) => {
 });
 
 
+setInterval(() => {
+    fetchCtrl.getZFSHosts().then(hostsArr => {
+        console.log(hostsArr)
+        let arr = [];
+        hostsArr.forEach(host => {
+            putCtrl.zpool(host.hostUrl)
+        })
 
-fetchCtrl.getZFSHosts().then(hostsArr => {
-   console.log(hostsArr)
-    let arr = [];
-    hostsArr.forEach(host => {
-        putCtrl.zpool(host.hostUrl)
-    })
 
-
-});
-
+    });
+}, 6000)
 
 
 http.listen(port, (req, res) => {
