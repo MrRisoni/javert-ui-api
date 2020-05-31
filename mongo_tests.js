@@ -1,6 +1,6 @@
 require ('custom-env').env('staging')
 const mongoose = require('mongoose');
-const schemas = require('./schemas/HostSchema');
+const schemas = require("./mongoSchemas");
 
 const connStr = 'mongodb+srv://' +  process.env.MONGO_USR + ':' + process.env.MONGO_PASSWD + '@' + process.env.MONGO_HOST +'/' + process.env.MONGO_DBNAME +'?retryWrites=true&w=majority';
 
@@ -9,7 +9,7 @@ mongoose.connect(connStr, {useNewUrlParser: true, useUnifiedTopology: true});
 
 
 var HostMdl = mongoose.model('Host', schemas.hostSchema);
-  var publicData = new HostMdl({ hostname: 'loadbalance_eu',fileSys:'zfs' });
+  var publicData = new HostMdl({ hostname: 'loadbalance_eu',hostUrl:'1121',fileSys:'zfs' });
 publicData.save().then(() => console.log('meow'));
 
 

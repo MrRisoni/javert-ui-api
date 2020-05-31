@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 var hostSchema = new mongoose.Schema({
     hostname: {type: String, unique: true, required: true},
     description: {type: String},
+    hostUrl: {type: String, unique: true, required: true},
     fileSys: {type: String, required: true},
 });
 

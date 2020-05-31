@@ -18,6 +18,21 @@ module.exports =
 
         }
 
+
+        getZFSHosts() {
+            return new Promise((resolve, reject) => {
+                schemas.hostMdl.find({ fileSys: 'zfs'}, (err, hosts) => {
+                    if (err) {
+                        console.log(err);
+                        reject();
+                    }
+                    resolve(hosts);
+
+                });
+            });
+
+        }
+
         getHostData(hostId = '5ebc2a530d0ffd1c6e5e8a05') {
            return Promise.all([this.getZFSList(),this.getZpool(),this.getSysProcs()]);
         }
