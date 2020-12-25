@@ -2,6 +2,7 @@ package com.mrrisoni.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import lombok.Data;
 
 @Data
 @Entity

@@ -5,6 +5,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.mrrisoni.spring_repos.HostsRepository;
+import com.mrrisoni.entities.Hosts;
+
+import java.util.Collection;
+import java.lang.Iterable;
 
 @RestController
 public class GeneralController {
@@ -18,7 +25,7 @@ public class GeneralController {
     }
 
     @RequestMapping(value=  "/api/hosts" , method = RequestMethod.GET)
-    public Collection<Hosts> getHosts() {
+    public Iterable<Hosts> getHosts() {
         return hostsRepo.findAll();
     }
 }

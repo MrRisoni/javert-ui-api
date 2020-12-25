@@ -1,0 +1,4 @@
+core/GeneralController.class
+com/mrrisoni/entities/Hosts.class
+com/mrrisoni/spring_repos/HostsRepository.class
+com/mrrisoni/javert/JavertApplication.class
