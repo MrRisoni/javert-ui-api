@@ -6,6 +6,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan(basePackages = {"core"})
 @SpringBootApplication
+@EnableJpaRepositories("spring_repos")
+@EntityScan("entities")
 public class JavertApplication {
 
 	public static void main(String[] args) {
